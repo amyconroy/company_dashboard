@@ -8,21 +8,27 @@ class CompanyController extends Controller
 {
     public function index()
     {
-        return Company::latest()->get();
+        return response(company::all()->jsonSerialize(), Response::HTTP_OK);
     }
 
-    public function store(Request $request)
+    public function create(Request $request)
     {
-        $this->validate($request, [
-            'body' => 'required|max:500'
-        ]);
-        return Task::create([ 'body' => request('body') ]);
+        // the following validates to ensure that user includes company name
+        $rules = [
+            'companyName' => 'required|string|max:255'
+        ];
+        $validator = Validator::make($request->all(), $rules);
+        if($validator->fails()){
+            return redirect('insert')
+            -> withInput()
+            -> withErrors($validator);
+        }
     }
-    
+
+    // successfully remove a company
     public function destroy($id)
     {
-        $task = Task::findOrFail($id);
-        $task->delete();
-        return 204;
+        company::destroy($id);
+        return response(null, Response::HTTP_OK);
     }
 }
