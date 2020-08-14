@@ -10,10 +10,11 @@
         <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@700&family=Open+Sans+Condensed:wght@700&display=swap" rel="stylesheet" rel="stylesheet">
 
         <!-- Styles -->
+        <!--- style set up with blue font -->
         <style>
             html, body {
                 background-color: #fff;
-                color: #366bc9;
+                color: #366bc9; 
                 font-family: 'Heebo', sans-serif;
                 font-family: 'Open Sans Condensed', sans-serif;
                 font-weight: 200;
