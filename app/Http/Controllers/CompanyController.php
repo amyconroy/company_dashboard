@@ -13,8 +13,12 @@ class CompanyController extends Controller
 
     public function create(Request $request)
     {
-        $company = new company; 
-        $name = $request->input('companyName')
+        $company = new company();
+        $company->name = $faker->lexify('????????');
+      
+        $company->save();
+
+        return response($company->jsonSerialize(), Response::HTTP_CREATED);
     }
 
     // successfully remove a company
