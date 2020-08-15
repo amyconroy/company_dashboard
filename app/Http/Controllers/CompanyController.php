@@ -14,8 +14,9 @@ class CompanyController extends Controller
     public function create(Request $request)
     {
         $company = new company();
-        $company->name = $faker->lexify('????????');
-      
+        $company->companyName = $request->input('companyName');
+        $company->companyDescription = $request->input('companyDescription');
+        $company->userId = $request->input('userId');
         $company->save();
 
         return response($company->jsonSerialize(), Response::HTTP_CREATED);
