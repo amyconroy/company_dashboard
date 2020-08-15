@@ -13,16 +13,8 @@ class CompanyController extends Controller
 
     public function create(Request $request)
     {
-        // the following validates to ensure that user includes company name
-        $rules = [
-            'companyName' => 'required|string|max:255'
-        ];
-        $validator = Validator::make($request->all(), $rules);
-        if($validator->fails()){
-            return redirect('insert')
-            -> withInput()
-            -> withErrors($validator);
-        }
+        $company = new company; 
+        $name = $request->input('companyName')
     }
 
     // successfully remove a company

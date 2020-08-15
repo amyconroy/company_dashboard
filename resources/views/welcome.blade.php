@@ -5,65 +5,11 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <title>Company Dashboard</title>
-
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@700&family=Open+Sans+Condensed:wght@700&display=swap" rel="stylesheet" rel="stylesheet">
-
         <!-- Styles -->
-        <!--- style set up with blue font -->
-        <style>
-            html, body {
-                background-color: #fff;
-                color: #366bc9; 
-                font-family: 'Heebo', sans-serif;
-                font-family: 'Open Sans Condensed', sans-serif;
-                font-weight: 200;
-                height: 100vh;
-                margin: 0;
-            }
-
-            .full-height {
-                height: 100vh;
-            }
-
-            .flex-center {
-                align-items: center;
-                display: flex;
-                justify-content: center;
-            }
-
-            .position-ref {
-                position: relative;
-            }
-
-            .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
-            }
-
-            .content {
-                text-align: center;
-            }
-
-            .title {
-                font-size: 84px;
-            }
-
-            .links > a {
-                color: #366bc9;
-                padding: 0 25px;
-                font-size: 13px;
-                font-weight: 600;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
-            }
-
-            .m-b-md {
-                margin-bottom: 30px;
-            }
-        </style>
+        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/welcome.css') }}" rel="stylesheet">
+        
+        <!-- main html-->
     </head>
     <body>
         <div class="flex-center position-ref full-height">
@@ -80,10 +26,13 @@
                     @endauth
                 </div>
             @endif
-
             <div class="content">
                 <div class="title m-b-md">
-                    Company Dashboard
+                    Company Management Dashboard
+                </div>
+                <div class="links">
+                    <a href="#">Add a New Company</a>
+                    <a href="#">Upload a New File</a>
                 </div>
             </div>
         </div>

@@ -13,6 +13,7 @@ class CreateFilesTable extends Migration
      */
     public function up()
     {
+        // up method makes changes to the db - migrate db, this will run
         Schema::create('files', function (Blueprint $table) {
             $table->id();
             $table->integer('userId')->references('id')->on('user');
