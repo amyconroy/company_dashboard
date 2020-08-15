@@ -5,64 +5,11 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <title>Company Dashboard</title>
-
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@700&family=Open+Sans+Condensed:wght@700&display=swap" rel="stylesheet" rel="stylesheet">
-
         <!-- Styles -->
-        <style>
-            html, body {
-                background-color: #fff;
-                color: #366bc9;
-                font-family: 'Heebo', sans-serif;
-                font-family: 'Open Sans Condensed', sans-serif;
-                font-weight: 200;
-                height: 100vh;
-                margin: 0;
-            }
-
-            .full-height {
-                height: 100vh;
-            }
-
-            .flex-center {
-                align-items: center;
-                display: flex;
-                justify-content: center;
-            }
-
-            .position-ref {
-                position: relative;
-            }
-
-            .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
-            }
-
-            .content {
-                text-align: center;
-            }
-
-            .title {
-                font-size: 84px;
-            }
-
-            .links > a {
-                color: #366bc9;
-                padding: 0 25px;
-                font-size: 13px;
-                font-weight: 600;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
-            }
-
-            .m-b-md {
-                margin-bottom: 30px;
-            }
-        </style>
+        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/welcome.css') }}" rel="stylesheet">
+        
+        <!-- main html-->
     </head>
     <body>
         <div class="flex-center position-ref full-height">
@@ -79,10 +26,46 @@
                     @endauth
                 </div>
             @endif
-
             <div class="content">
-                <div class="title m-b-md">
-                    Company Dashboard
+                <div class="title">
+                    Company Management Dashboard
+                </div>
+                <div class="links">
+                    <a href="#">Add a New Company</a>
+                    <a href="#">Upload a File</a>
+                </div>
+
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm">
+                        Companies
+                        <div class="list-group">
+                        <a href="#" class="list-group-item list-group-item-action">Dapibus ac facilisis in</a>  
+                        <a href="#" class="list-group-item list-group-item-action list-group-item-primary">This is a primary list group item</a>
+                        <a href="#" class="list-group-item list-group-item-action list-group-item-secondary">This is a secondary list group item</a>
+                        <a href="#" class="list-group-item list-group-item-action list-group-item-success">This is a success list group item</a>
+                        <a href="#" class="list-group-item list-group-item-action list-group-item-danger">This is a danger list group item</a>
+                        <a href="#" class="list-group-item list-group-item-action list-group-item-warning">This is a warning list group item</a>
+                        <a href="#" class="list-group-item list-group-item-action list-group-item-info">This is a info list group item</a>
+                        <a href="#" class="list-group-item list-group-item-action list-group-item-light">This is a light list group item</a>
+                        <a href="#" class="list-group-item list-group-item-action list-group-item-dark">This is a dark list group item</a>
+                    </div>
+                        </div>
+                            <div class="col-sm">
+                                Files
+                                <div class="list-group">
+                                    <a href="#" class="list-group-item list-group-item-action">Dapibus ac facilisis in</a>  
+                                    <a href="#" class="list-group-item list-group-item-action list-group-item-primary">This is a primary list group item</a>
+                                    <a href="#" class="list-group-item list-group-item-action list-group-item-secondary">This is a secondary list group item</a>
+                                    <a href="#" class="list-group-item list-group-item-action list-group-item-success">This is a success list group item</a>
+                                    <a href="#" class="list-group-item list-group-item-action list-group-item-danger">This is a danger list group item</a>
+                                    <a href="#" class="list-group-item list-group-item-action list-group-item-warning">This is a warning list group item</a>
+                                    <a href="#" class="list-group-item list-group-item-action list-group-item-info">This is a info list group item</a>
+                                    <a href="#" class="list-group-item list-group-item-action list-group-item-light">This is a light list group item</a>
+                                    <a href="#" class="list-group-item list-group-item-action list-group-item-dark">This is a dark list group item</a>
+                                </div>
+                            </div>
+                    </div>
                 </div>
             </div>
         </div>

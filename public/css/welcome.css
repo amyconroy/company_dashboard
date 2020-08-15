@@ -1,0 +1,78 @@
+/*!
+ * CSS for the main page, overwrites what is in the bootstrap template where needed.
+ */
+
+@import url(https://fonts.googleapis.com/css2?family=Heebo:wght@700&family=Open+Sans+Condensed:wght@700&display=swap);
+
+html, body {
+    background-color: #fff;
+    color: #366bc9; 
+    font-family: 'Heebo', sans-serif;
+    font-family: 'Open Sans Condensed', sans-serif;
+    font-weight: 200;
+    height: 100vh;
+    margin: 0;
+}
+
+.full-height {
+    height: 100vh;
+}
+
+.flex-center {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
+.position-ref {
+    position: relative;
+}
+
+.top-right {
+    position: absolute;
+    right: 10px;
+    top: 18px;
+}
+
+.content {
+    text-align: center;
+}
+
+.title {
+
+    padding: 0 25px;
+    font-size: 60px;
+}
+
+.links > a {
+    color: #21b434;
+    padding: 0 25px;
+    font-size: 17px;
+    font-weight: 600;
+    letter-spacing: .1rem;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+.m-b-md {
+    margin-bottom: 30px;
+}
+
+/* bootstrap code updated for comp dashboard specs */
+.subtitle-left {
+    position: absolute;
+    text-transform: uppercase;
+    letter-spacing: .1rem;
+    left: 5px;
+    color: #383d41;
+    font-size: 30px;
+}
+
+.subtitle-right {
+    position: absolute;
+    letter-spacing: .1rem;
+    text-transform: uppercase;
+    right: 5px;
+    color: #383d41;
+    font-size: 30px;
+}
