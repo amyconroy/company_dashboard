@@ -2,17 +2,16 @@
 
 namespace App\Http\Controllers;
 use App\Http\Resources\CompanyCollection;
+use Illuminate\Http\Request;
 use App\company;
 use App\tags;
-use App\companyTags;
-use Illuminate\Http\Request;
 
 // company is the model name
 class CompanyController extends Controller
 {
     public function index()
     {
-        return response(company::all()->jsonSerialize(), Response::HTTP_OK);
+        return new CompanyCollection(company::all());
     }
 
     public function create(Request $request)
@@ -38,8 +37,6 @@ class CompanyController extends Controller
                 $company->tags()->attach($newTagId);
             }
         }
-        
-
         return response()->json('successfully added new company');
     }
 

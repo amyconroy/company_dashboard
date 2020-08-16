@@ -9,7 +9,7 @@ Vue.use(VueAxios, axios);
 
 
 import App from "./views/App";
-import Hello from "./views/Hello";
+import Companies from "./components/Companies";
 import Home from "./views/Home";
 import AddCompany from "./components/AddCompany";
 
@@ -23,9 +23,9 @@ const router = new VueRouter({
             component: Home,
         },
         {
-            path: "/hello",
-            name: "hello",
-            component: Hello,
+            path: "/companies",
+            name: "companies",
+            component: Companies,
         },
         {
             path: "/company/create",
