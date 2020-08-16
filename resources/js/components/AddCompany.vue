@@ -16,6 +16,14 @@
               <textarea class="form-control" v-model="post.body" rows="5"></textarea>
             </div>
           </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>Company Tags:</label>
+                    <input type="text" class="form-control" v-model="post.tags">
+                </div>
+            </div>
         </div><br />
         <div class="form-group">
           <button class="btn btn-primary">Add Company</button>
