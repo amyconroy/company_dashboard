@@ -15,8 +15,13 @@ class CreateTagsTable extends Migration
     {
         Schema::create('tags', function (Blueprint $table) {
             $table->id();
-            $table->string('tagName');
+            $table->string('tagName')->unique();
             $table->timestamps();
+        });
+
+         Schema::create('company_tags', function (Blueprint $table) {
+            $table->integer('company_id')->references('id')->on('company');
+            $table->integer('tags_id')->references('id')->on('tags');
         });
     }
 
@@ -28,5 +33,6 @@ class CreateTagsTable extends Migration
     public function down()
     {
         Schema::drop('tags');
+        Schema::drop('company_tags');
     }
 }
