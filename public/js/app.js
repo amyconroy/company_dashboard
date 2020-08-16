@@ -1947,7 +1947,7 @@ __webpack_require__.r(__webpack_exports__);
       var uri = 'http://companydashboard.test/api/company/create';
       this.axios.post(uri, this.post).then(function (response) {
         _this.$router.push({
-          name: 'addCompany'
+          name: 'home'
         });
       });
     }
