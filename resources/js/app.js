@@ -9,17 +9,31 @@ require('./bootstrap');
 window.Vue = require('vue');
 
 /**
- * The following block of code may be used to automatically register your
- * Vue components. It will recursively scan this directory for the Vue
- * components and automatically register them with their "basename".
- *
- * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
+ * Using the vue router and vue axios dependencies
+ * Vue-router used to route the vue.js application using different components, 
+ * vue-axios sends network requests to the server. 
+ */
+
+
+import VueRouter from "vue-router";
+Vue.use(VueRouter);
+
+import VueAxios from "vue-axios";
+import axios from "axios";
+Vue.use(VueAxios, axios);
+
+
+/**
+ * The following block of code used to automatically register Vue components. 
  */
 
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
-Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+Vue.component(
+    "example-component",
+    require("./components/ExampleComponent.vue")
+);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -27,6 +41,5 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-const app = new Vue({
-    el: '#app',
-});
+const router = new VueRouter({ mode: "history" });
+const app = new Vue(Vue.util.extend({ router })).$mount("#app");
