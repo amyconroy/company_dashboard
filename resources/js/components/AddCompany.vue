@@ -41,8 +41,7 @@
     },
     methods: {
       addPost(){
-            let uri = 'http://companydashboard.test/api/company/create';
-            this.axios.post(uri, this.post).then((response) => {
+            this.axios.post(('./api/company/create'), this.post).then((response) => {
                 this.$router.push({name: 'home'});
             });
         }

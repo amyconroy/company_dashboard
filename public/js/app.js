@@ -1952,8 +1952,7 @@ __webpack_require__.r(__webpack_exports__);
     addPost: function addPost() {
       var _this = this;
 
-      var uri = 'http://companydashboard.test/api/company/create';
-      this.axios.post(uri, this.post).then(function (response) {
+      this.axios.post('./api/company/create', this.post).then(function (response) {
         _this.$router.push({
           name: 'home'
         });
@@ -1992,6 +1991,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2001,8 +2004,7 @@ __webpack_require__.r(__webpack_exports__);
   created: function created() {
     var _this = this;
 
-    var uri = 'http://companydashboard.test/api/companies';
-    this.axios.get(uri).then(function (response) {
+    this.axios.get('./api/companies').then(function (response) {
       _this.companies = response.data.data;
     });
   }
@@ -2682,11 +2684,20 @@ var render = function() {
       _c(
         "tbody",
         _vm._l(_vm.companies, function(company) {
-          return _c("tr", { key: company.id }, [
-            _c("td", [_vm._v(_vm._s(company.companyName))]),
-            _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(company.companyDescription))])
-          ])
+          return _c(
+            "tr",
+            { key: company.id },
+            [
+              _c("td", [_vm._v(_vm._s(company.companyName))]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(company.companyDescription))]),
+              _vm._v(" "),
+              _vm._l(_vm.companies.tags, function(tag) {
+                return _c("ul", { key: tag }, [_c("td", [_vm._v(_vm._s(tag))])])
+              })
+            ],
+            2
+          )
         }),
         0
       )
@@ -2702,7 +2713,9 @@ var staticRenderFns = [
       _c("tr", [
         _c("th", [_vm._v("Company Name")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Company Description")])
+        _c("th", [_vm._v("Company Description")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Tags")])
       ])
     ])
   }

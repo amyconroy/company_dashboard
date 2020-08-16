@@ -17,6 +17,12 @@ class company extends Model
     protected $guarded = ['id'];
     protected $fillable = ['companyName', 'companyDescription', 'userId'];
     public $timestamps = false;
+    protected $appends =['tags'];
+
+    public function getTagsAttribute()
+    {
+        return $this->tags()->pluck('tagName')->toArray();
+    }
 
     public function tags()
     {
