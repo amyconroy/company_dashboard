@@ -13,10 +13,13 @@ class company extends Model
      * @var string
      */
     protected $table = 'company';
-
     // not mass assignable, prevents security issues
     protected $guarded = ['id'];
-
     protected $fillable = ['companyName', 'companyDescription', 'userId'];
+    public $timestamps = false;
 
+    public function tags()
+    {
+        return $this->belongsToMany('App\tags');
+    }
 }
