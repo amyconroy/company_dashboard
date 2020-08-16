@@ -1952,7 +1952,7 @@ __webpack_require__.r(__webpack_exports__);
     addPost: function addPost() {
       var _this = this;
 
-      this.axios.post('./api/company/create', this.post).then(function (response) {
+      this.axios.post('/api/company/create', this.post).then(function (response) {
         _this.$router.push({
           name: 'home'
         });
@@ -2692,8 +2692,8 @@ var render = function() {
               _vm._v(" "),
               _c("td", [_vm._v(_vm._s(company.companyDescription))]),
               _vm._v(" "),
-              _vm._l(_vm.companies.tags, function(tag) {
-                return _c("ul", { key: tag }, [_c("td", [_vm._v(_vm._s(tag))])])
+              _vm._l(company.tags, function(tag) {
+                return _c("div", [_c("div", [_vm._v(_vm._s(tag))])])
               })
             ],
             2

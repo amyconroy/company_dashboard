@@ -13,7 +13,9 @@
                 <tr v-for="company in companies" :key="company.id">
                     <td>{{ company.companyName }}</td>
                     <td>{{ company.companyDescription }}</td>
-                    <td>{{ company.tags }}</td>
+                    <div v-for="tag in company.tags">
+                        <div>{{ tag }}</div>
+                    </div>
                 </tr>
             </tbody>
         </table>
@@ -27,7 +29,7 @@
         }
       },
       created() {
-        this.axios.get(('./api/companies')).then(response => {
+        this.axios.get(('/api/companies')).then(response => {
           this.companies = response.data.data;
         });
     }
