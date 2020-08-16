@@ -1,9 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Http\Resources\CompanyCollection;
 use App\company;
 use Illuminate\Http\Request;
 
+// company is the model name
 class CompanyController extends Controller
 {
     public function index()
@@ -13,13 +15,14 @@ class CompanyController extends Controller
 
     public function create(Request $request)
     {
-        $company = new company();
-        $company->companyName = $request->input('companyName');
-        $company->companyDescription = $request->input('companyDescription');
-        $company->userId = $request->input('userId');
+        $company = new company([
+            'companyName' => $request->get('title'),
+            'companyDescription' => $request->get('body'), 
+            'userId' => 0
+        ]);
         $company->save();
 
-        return response($company->jsonSerialize(), Response::HTTP_CREATED);
+        return response()->json('successfully added');
     }
 
     // successfully remove a company
