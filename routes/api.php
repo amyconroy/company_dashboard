@@ -19,6 +19,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 // RESTful API Routes - resource creates necessary actions. 
-Route::resource('/company', 'CompanyController', [
-  'except' => ['edit', 'show', 'store']
-]);
+Route::post('/company/create', 'CompanyController@create');

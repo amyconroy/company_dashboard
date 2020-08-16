@@ -17,4 +17,6 @@ class company extends Model
     // not mass assignable, prevents security issues
     protected $guarded = ['id'];
 
+    protected $fillable = ['companyName', 'companyDescription', 'userId'];
+
 }

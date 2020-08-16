@@ -19,3 +19,6 @@ Homestead.json
 
 # Mac files
 .DS_Store
+
+#prettier config
+.eslintrc.json
