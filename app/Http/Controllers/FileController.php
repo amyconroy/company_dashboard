@@ -7,6 +7,7 @@ use App\files;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Storage;
+use NcJoes\OfficeConverter\OfficeConverter;
 
 // file controller
 class FileController extends Controller
@@ -18,6 +19,8 @@ class FileController extends Controller
 
     public function pdf($id)
     {
+        $file = files::where('id', $id)->get();
+        
         return new FileResource(files::findOrFail($id));
     }
 

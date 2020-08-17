@@ -2088,6 +2088,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['fileId'],
   data: function data() {
     return {
       files: []
@@ -2100,12 +2101,15 @@ __webpack_require__.r(__webpack_exports__);
       _this.files = response.data.data;
     });
   },
-  viewPDF: function viewPDF() {
-    var _this2 = this;
+  methods: {
+    viewPDF: function viewPDF(fileId) {
+      var _this2 = this;
 
-    this.axios.get('/files/pdf/:id').then(function (response) {
-      _this2.files = response.data.data;
-    });
+      alert(fileId);
+      this.axios.get('/files/pdf/:id', this.fileId).then(function (response) {
+        _this2.files = response.data.data;
+      });
+    }
   }
 });
 
@@ -2903,7 +2907,11 @@ var render = function() {
             _c("td", [
               _c("input", {
                 attrs: { type: "button", value: "View as PDF" },
-                on: { click: _vm.viewPdf }
+                on: {
+                  click: function($event) {
+                    return _vm.viewPDF(file.id)
+                  }
+                }
               })
             ])
           ])

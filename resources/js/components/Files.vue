@@ -13,7 +13,7 @@
                 <tr v-for="file in files" :key="file.id">
                     <td> {{file.id}}</td>
                     <td>{{ file.fileName }}</td>
-                    <td><input type = 'button' value='View as PDF' @click="viewPdf"></td>
+                    <td><input type = 'button' value='View as PDF'  v-on:click="viewPDF(file.id)"></td>
                 </tr>
             </tbody>
         </table>
@@ -21,6 +21,7 @@
 </template>
 <script>
   export default {
+      props: ['fileId'],
       data() {
         return {
           files: []
@@ -31,10 +32,14 @@
           this.files = response.data.data;
         });
     },
-     viewPDF() {
-        this.axios.get(('/files/pdf/:id')).then(response => {
-          this.files = response.data.data;
-        });
+     methods: {
+        viewPDF(fileId) {
+            alert(fileId);
+            this.axios.get(('/files/pdf/:id'), this.fileId).then(response => {
+                
+                this.files = response.data.data;
+            });
+        }
     }
   }
 </script>
