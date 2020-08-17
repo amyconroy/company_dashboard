@@ -12,6 +12,7 @@ import App from "./views/App";
 import Companies from "./components/Companies";
 import Home from "./views/Home";
 import AddCompany from "./components/AddCompany";
+import UploadFile from "./components/UploadFile";
 
 
 const router = new VueRouter({
@@ -31,6 +32,11 @@ const router = new VueRouter({
             path: "/company/create",
             name: "addCompany",
             component: AddCompany,
+        },
+        {
+            path: "/files/upload",
+            name: "uploadFile",
+            component: UploadFile,
         },
     ],
 });

@@ -17,7 +17,8 @@ class CreateFilesTable extends Migration
         Schema::create('files', function (Blueprint $table) {
             $table->id();
             $table->integer('userId')->references('id')->on('user');
-            $table->binary('filesContents'); // binary is the equivalent to blob 
+            $table->string('fileName'); // user inputted file name
+            $table->string('filePath'); // where the file is stored
             $table->timestamps();
         });
     }
