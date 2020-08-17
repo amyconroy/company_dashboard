@@ -1,31 +1,29 @@
 <template>
-    <div class="container">
-        <label>File Name:</label>
-            <input type="text" class="form-control" v-model="files.fileName">
-        <div class="large-12 medium-12 small-12 filezone">
-            <input type="file" id="files" ref="files" multiple v-on:change="handleFiles()" />
-        </div>
-        <input type="submit" name="submit" v-on:click="submitFiles()"/>
+    <div class="container" enctype="multipart/form-data" method="POST">
+          <input type="file" name="files" @change="handleFiles($event)">
+             <button @click="submitFiles">
+                    Submit 
+            </button>
     </div>
 </template>
 <script>
     export default {
             data() {
                 return {
-                    files: []
+                    files: [], 
+                    file: []
                 }
             },
             methods: {
                 // this uploads the files to the file array 
-                handleFiles() {
-                    let uploadedFiles = this.$refs.files.files;
-                    for(var i = 0; i < uploadedFiles.length; i++) {
-                        this.files.push(uploadedFiles[i]);
-                    }
-                    $files.fileName = 'test';
+                handleFiles(e) {
+                     this.file = e.target.files[0];
                 },
                 submitFiles() {
-                        this.axios.post(('/api/files/upload'), this.files).then((response) => {
+                        alert('test');
+                        let formData = new FormData();
+                        formData.append('file', this.file);
+                        this.axios.post(('/api/files/upload'), formData).then((response) => {
                             this.$router.push({name: 'home'});
                     });
                 }

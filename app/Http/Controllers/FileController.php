@@ -32,18 +32,23 @@ class FileController extends Controller
 
       //  else
       //  {
-            $f = $request->file('file');
-            $name = 'testing'; 
-            // stores the file at storage/app
-            Storage::disk('local')->put($name, $f);
-            $path = Storage::url($name);
-            $file = new files([
-                'fileName' => $name,
-                'filePath' => $path, 
-                'userId' => 0
-            ]);
-            $file->save();
-            return response()->json('successfully added new file');
+            if($request->file('file') != null){
+                $file = $request->file('file');
+                $file_name = $file->getClientOriginalName();
+                // stores the file at storage/app
+                Storage::disk('local')->put($file_name, $file);
+                $path = Storage::url($file_name);
+                $newfile = new files([
+                    'fileName' => $file_name,
+                    'filePath' => $path, 
+                    'userId' => 0
+                ]);
+                $newfile->save();
+                return response()->json('successfully added new file');
+            }
+            else{
+                 return $request->all();
+            }
             
        // }
     }

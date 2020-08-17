@@ -2029,29 +2029,25 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      files: []
+      files: [],
+      file: []
     };
   },
   methods: {
     // this uploads the files to the file array 
-    handleFiles: function handleFiles() {
-      var uploadedFiles = this.$refs.files.files;
-
-      for (var i = 0; i < uploadedFiles.length; i++) {
-        this.files.push(uploadedFiles[i]);
-      }
-
-      $files.fileName = 'test';
+    handleFiles: function handleFiles(e) {
+      this.file = e.target.files[0];
     },
     submitFiles: function submitFiles() {
       var _this = this;
 
-      this.axios.post('/api/files/upload', this.files).then(function (response) {
+      alert('test');
+      var formData = new FormData();
+      formData.append('file', this.file);
+      this.axios.post('/api/files/upload', formData).then(function (response) {
         _this.$router.push({
           name: 'home'
         });
@@ -2792,52 +2788,27 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "container" }, [
-    _c("label", [_vm._v("File Name:")]),
-    _vm._v(" "),
-    _c("input", {
-      directives: [
-        {
-          name: "model",
-          rawName: "v-model",
-          value: _vm.files.fileName,
-          expression: "files.fileName"
-        }
-      ],
-      staticClass: "form-control",
-      attrs: { type: "text" },
-      domProps: { value: _vm.files.fileName },
-      on: {
-        input: function($event) {
-          if ($event.target.composing) {
-            return
-          }
-          _vm.$set(_vm.files, "fileName", $event.target.value)
-        }
-      }
-    }),
-    _vm._v(" "),
-    _c("div", { staticClass: "large-12 medium-12 small-12 filezone" }, [
+  return _c(
+    "div",
+    {
+      staticClass: "container",
+      attrs: { enctype: "multipart/form-data", method: "POST" }
+    },
+    [
       _c("input", {
-        ref: "files",
-        attrs: { type: "file", id: "files", multiple: "" },
+        attrs: { type: "file", name: "files" },
         on: {
           change: function($event) {
-            return _vm.handleFiles()
+            return _vm.handleFiles($event)
           }
         }
-      })
-    ]),
-    _vm._v(" "),
-    _c("input", {
-      attrs: { type: "submit", name: "submit" },
-      on: {
-        click: function($event) {
-          return _vm.submitFiles()
-        }
-      }
-    })
-  ])
+      }),
+      _vm._v(" "),
+      _c("button", { on: { click: _vm.submitFiles } }, [
+        _vm._v("\n                Submit \n        ")
+      ])
+    ]
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
