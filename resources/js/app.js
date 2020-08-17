@@ -13,7 +13,7 @@ import Companies from "./components/Companies";
 import Home from "./views/Home";
 import AddCompany from "./components/AddCompany";
 import UploadFile from "./components/UploadFile";
-
+import Files from "./components/files";
 
 const router = new VueRouter({
     mode: "history",
@@ -37,6 +37,11 @@ const router = new VueRouter({
             path: "/files/upload",
             name: "uploadFile",
             component: UploadFile,
+        },
+        {
+            path: "/files",
+            name: "files",
+            component: Files,
         },
     ],
 });

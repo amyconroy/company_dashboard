@@ -20,7 +20,6 @@
                      this.file = e.target.files[0];
                 },
                 submitFiles() {
-                        alert('test');
                         let formData = new FormData();
                         formData.append('file', this.file);
                         this.axios.post(('/api/files/upload'), formData).then((response) => {

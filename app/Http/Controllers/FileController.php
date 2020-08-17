@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Http\Resources\CompanyCollection;
+use App\Http\Resources\FileCollection;
 use Illuminate\Http\Request;
 use App\files;
 use Illuminate\Support\Facades\Validator;
