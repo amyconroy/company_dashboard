@@ -16,6 +16,11 @@ class FileController extends Controller
         return new FileCollection(files::all());
     }
 
+    public function pdf($id)
+    {
+        return new FileResource(files::findOrFail($id));
+    }
+
     public function create(Request $request)
     {
         // check to ensure that its a valid file extension 

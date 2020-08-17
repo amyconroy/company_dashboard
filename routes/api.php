@@ -23,3 +23,4 @@ Route::post('/company/create', 'CompanyController@create');
 Route::get('/companies', 'CompanyController@index');
 Route::post('/files/upload', 'FileController@create');
 Route::get('/files', 'FileController@index');
+Route::get('/files/pdf/:id', 'FileController@pdf');

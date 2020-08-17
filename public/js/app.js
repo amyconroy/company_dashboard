@@ -2085,6 +2085,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2096,6 +2098,13 @@ __webpack_require__.r(__webpack_exports__);
 
     this.axios.get('/api/files').then(function (response) {
       _this.files = response.data.data;
+    });
+  },
+  viewPDF: function viewPDF() {
+    var _this2 = this;
+
+    this.axios.get('/files/pdf/:id').then(function (response) {
+      _this2.files = response.data.data;
     });
   }
 });
@@ -2889,7 +2898,14 @@ var render = function() {
           return _c("tr", { key: file.id }, [
             _c("td", [_vm._v(" " + _vm._s(file.id))]),
             _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(file.fileName))])
+            _c("td", [_vm._v(_vm._s(file.fileName))]),
+            _vm._v(" "),
+            _c("td", [
+              _c("input", {
+                attrs: { type: "button", value: "View as PDF" },
+                on: { click: _vm.viewPdf }
+              })
+            ])
           ])
         }),
         0
@@ -2906,7 +2922,9 @@ var staticRenderFns = [
       _c("tr", [
         _c("th", [_vm._v("File Number")]),
         _vm._v(" "),
-        _c("th", [_vm._v("File Name")])
+        _c("th", [_vm._v("File Name")]),
+        _vm._v(" "),
+        _c("th")
       ])
     ])
   }

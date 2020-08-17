@@ -6,12 +6,14 @@
             <tr>
                 <th>File Number</th>
                 <th>File Name</th>
+                <th> </th>
             </tr>
             </thead>
             <tbody>
                 <tr v-for="file in files" :key="file.id">
                     <td> {{file.id}}</td>
                     <td>{{ file.fileName }}</td>
+                    <td><input type = 'button' value='View as PDF' @click="viewPdf"></td>
                 </tr>
             </tbody>
         </table>
@@ -26,6 +28,11 @@
       },
       created() {
         this.axios.get(('/api/files')).then(response => {
+          this.files = response.data.data;
+        });
+    },
+     viewPDF() {
+        this.axios.get(('/files/pdf/:id')).then(response => {
           this.files = response.data.data;
         });
     }
