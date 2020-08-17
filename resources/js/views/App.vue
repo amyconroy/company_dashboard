@@ -5,7 +5,9 @@
         <p>                <!-- main html-->
             <router-link :to="{ name: 'home' }">Home</router-link> |
             <router-link :to="{ name: 'companies' }">View All Companies</router-link> |
-            <router-link :to="{ name: 'addCompany' }">Add a Company</router-link>
+            <router-link :to="{ name: 'addCompany' }">Add a Company</router-link> |
+            <router-link :to="{ name: 'uploadFile' }">Upload a File</router-link> |
+            <router-link :to="{ name: 'files' }">View Files</router-link>
         </p>
 
         <div class="container">
