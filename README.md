@@ -6,9 +6,11 @@ Company management dashboard built with PHP, Vue.js and Postgres. Capable of cre
 ## usage
 
 ## features
-![gif 1](Documentation/ex1.gif]
-![gif 2](Documentation/ex2.gif]
-![gif 3](Documentation/ex3.gif]
+![gif 1](Documentation/ex1.gif)
+
+![gif 2](Documentation/ex2.gif)
+
+![gif 3](Documentation/ex3.gif)
 
 ### scalability
 
