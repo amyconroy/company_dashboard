@@ -6,19 +6,22 @@ Company management dashboard built with PHP, Vue.js and Postgres. Capable of cre
 ## usage
 
 ## features
-![gif 1](Documentation/ex1.gif)
+<p align="center"><img src="Documentation/ex1.gif"width=70%>
+</p>
+User can upload a file and see it listed on the files page. 
 
-![gif 2](Documentation/ex2.gif)
-
-![gif 3](Documentation/ex3.gif)
+<p align="center"><img src="Documentation/ex3.gif"width=70%>
+</p>
+User can upload a CSV file and use that information to fill in the companies. 
 
 ### scalability
 
 tags
 
 ### user validation 
+<p align="center"><img src="Documentation/ex2.gif"width=70%>
+</p>
+Validates correct user input prior to inserting it in to the database. 
 
-gifs
- 
 ## built with 
 [laravel](https://github.com/laravel) | [vue.js](https://github.com/vuejs) | [postgres](https://github.com/postgres)
