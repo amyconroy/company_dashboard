@@ -62,38 +62,28 @@ class FileController extends Controller
 
     public function create(Request $request)
     {
-        // check to ensure that its a valid file extension 
-      //  $rules = array(
-       //         'file' => 'required|mimes:doc,docx',
-     //   );
-   
-     //   $validator = Validator::make(, $rules);
+        // validate to ensure proper user input, if not returns error - doc and docx files allowed
+        $validateData = $request->validate([
+            'file' => 'required|mimes:doc,docx'
+        ]);
 
-     //   if($validator->fails())
-    //    {
-     //       return Redirect::to('/files/upload')->withErrors($validator);
-     //   }
-
-      //  else
-      //  {
-            if($request->file('file') != null){
-                $file = $request->file('file');
-                $file_name = $file->getClientOriginalName();
-                // stores the file at storage/app
-                Storage::disk('local')->put($file_name, file_get_contents($file));
-                $path = Storage::disk('local')->path($file_name);
-                $newfile = new files([
-                    'fileName' => $file_name,
-                    'filePath' => $path, 
-                    'userId' => 0
-                ]);
-                $newfile->save();
-                return response()->json('successfully added new file');
-            }
-            else{
-                 return $request->all();
-            }
-            
-       // }
+        // ensure that the file is not empty
+        if($request->file('file') != null){
+            $file = $request->file('file');
+            $file_name = $file->getClientOriginalName();
+            // stores the file at storage/app locally - can scale to AWS storage, same method
+            Storage::disk('local')->put($file_name, file_get_contents($file));
+            $path = Storage::disk('local')->path($file_name);
+            $newfile = new files([
+                'fileName' => $file_name,
+                'filePath' => $path, 
+                'userId' => 0
+            ]);
+            $newfile->save();
+            return response()->json('successfully added new file');
+        }
+        else{
+            return $request->all();
+        }     
     }
 }

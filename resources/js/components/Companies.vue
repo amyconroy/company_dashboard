@@ -1,6 +1,5 @@
 <template>
   <div>
-      <h1>Companies</h1>
         <table class="table table-hover">
             <thead>
             <tr>
