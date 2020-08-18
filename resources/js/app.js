@@ -7,10 +7,8 @@ import VueAxios from "vue-axios";
 import axios from "axios";
 Vue.use(VueAxios, axios);
 
-
 import App from "./views/App";
 import Companies from "./components/Companies";
-import Home from "./views/Home";
 import AddCompany from "./components/AddCompany";
 import UploadFile from "./components/UploadFile";
 import Files from "./components/files";
@@ -18,11 +16,6 @@ import Files from "./components/files";
 const router = new VueRouter({
     mode: "history",
     routes: [
-        {
-            path: "/",
-            name: "home",
-            component: Home,
-        },
         {
             path: "/companies",
             name: "companies",

@@ -30,44 +30,15 @@
                 <div class="title">
                     Company Management Dashboard
                 </div>
-                <div class="links">
-                    <a href="#">Add a New Company</a>
-                    <a href="#">Upload a File</a>
-                </div>
-
-                <div class="container">
-                    <div class="row">
-                        <div class="col-sm">
-                        Companies
-                        <div class="list-group">
-                        <a href="#" class="list-group-item list-group-item-action">Dapibus ac facilisis in</a>  
-                        <a href="#" class="list-group-item list-group-item-action list-group-item-primary">This is a primary list group item</a>
-                        <a href="#" class="list-group-item list-group-item-action list-group-item-secondary">This is a secondary list group item</a>
-                        <a href="#" class="list-group-item list-group-item-action list-group-item-success">This is a success list group item</a>
-                        <a href="#" class="list-group-item list-group-item-action list-group-item-danger">This is a danger list group item</a>
-                        <a href="#" class="list-group-item list-group-item-action list-group-item-warning">This is a warning list group item</a>
-                        <a href="#" class="list-group-item list-group-item-action list-group-item-info">This is a info list group item</a>
-                        <a href="#" class="list-group-item list-group-item-action list-group-item-light">This is a light list group item</a>
-                        <a href="#" class="list-group-item list-group-item-action list-group-item-dark">This is a dark list group item</a>
-                    </div>
-                        </div>
-                            <div class="col-sm">
-                                Files
-                                <div class="list-group">
-                                    <a href="#" class="list-group-item list-group-item-action">Dapibus ac facilisis in</a>  
-                                    <a href="#" class="list-group-item list-group-item-action list-group-item-primary">This is a primary list group item</a>
-                                    <a href="#" class="list-group-item list-group-item-action list-group-item-secondary">This is a secondary list group item</a>
-                                    <a href="#" class="list-group-item list-group-item-action list-group-item-success">This is a success list group item</a>
-                                    <a href="#" class="list-group-item list-group-item-action list-group-item-danger">This is a danger list group item</a>
-                                    <a href="#" class="list-group-item list-group-item-action list-group-item-warning">This is a warning list group item</a>
-                                    <a href="#" class="list-group-item list-group-item-action list-group-item-info">This is a info list group item</a>
-                                    <a href="#" class="list-group-item list-group-item-action list-group-item-light">This is a light list group item</a>
-                                    <a href="#" class="list-group-item list-group-item-action list-group-item-dark">This is a dark list group item</a>
-                                </div>
-                            </div>
-                    </div>
+                <div id="app">
+                    <li><router-link class="items" to="/company/create">Add a New Company</router-link></li>
+                    <li><router-link class="items" to="/files/upload">Upload a File</router-link></li>
+                    <li><router-link class="items" to="/companies">View Companies</router-link></li>
+                    <li><router-link class="items" to="/files">View Files</router-link></li>
+                    <router-view></router-view>
                 </div>
             </div>
         </div>
+        <script src="{{asset('js/app.js')}}"></script>
     </body>
 </html>
