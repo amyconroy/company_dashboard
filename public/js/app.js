@@ -2912,7 +2912,7 @@ var render = function() {
         { staticClass: "row justify-content-center align-items-center" },
         [
           _c("input", {
-            attrs: { type: "file", name: "files" },
+            attrs: { type: "file", multiple: "", name: "files" },
             on: {
               change: function($event) {
                 return _vm.handleFiles($event)

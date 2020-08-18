@@ -5,17 +5,17 @@ namespace Tests\Feature;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
-class ExampleTest extends TestCase
+class UploadFilesTest extends TestCase
 {
     /**
      * A basic test example.
      *
      * @return void
      */
-    public function testBasicTest()
+    public function HomeBasicTest()
     {
-        $response = $this->get('/');
-
+        // home page test
+        $response = $this->get('/files/upload');
         $response->assertStatus(200);
     }
 }
