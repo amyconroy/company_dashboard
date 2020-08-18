@@ -5,6 +5,18 @@ Company management dashboard built with PHP, Vue.js and Postgres. Capable of cre
 
 ## usage
 
+```
+$ git clone https://github.com/amyconroy/company_dashboard.git company_dashboard
+$ cd company_dashboard
+```
+Please ensure that you have installed [composer](https://getcomposer.org/download/) and [npm](https://www.npmjs.com/get-npm). 
+```
+$ composer install
+$ npm install
+$ cp .env.example .env
+```
+
+
 ## features
 <p align="center"><img src="Documentation/ex1.gif"width=70%>
 </p>
