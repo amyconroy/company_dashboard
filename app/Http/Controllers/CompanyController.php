@@ -10,18 +10,20 @@ use App\tags;
 class CompanyController extends Controller
 {
     public function index()
-    {
+    {   // returns all companies as an array
         return new CompanyCollection(company::all());
     }
 
     public function create(Request $request)
     {
+        // validate to ensure proper user input, if not returns error
         $validateData = $request->validate([
             'title' => 'required|max:255', 
             'body' => 'required', 
             'tags' => 'required'
         ]);
-               // init the new company 
+        
+        // init the new company 
         $company = new company([
             'companyName' => $request->get('title'),
             'companyDescription' => $request->get('body'), 
@@ -32,20 +34,22 @@ class CompanyController extends Controller
         // get all tags from the request
         $tags = $request->get('tags');
 
-        // guard against no tags
-        if(!empty($tags)) {
+        // extra guard against no tags
+        if(!empty($tags)) { // splits the tags based on comma
             $tagsSplit = array_filter(explode(',', $tags));
             foreach($tagsSplit as $tag){
+                // if there isn't already a tag with that name - make a new one, 
+                // allows for future sorting by tags
                 $newTag = tags::firstOrCreate(['tagName' => $tag]);
                 $newTag->save();
                 $newTagId = $newTag->id; 
                 $company->tags()->attach($newTagId);
             }
         }
-        return response()->json('successfully added new company');
+        return response()->json('Successfully added new company');
     }
 
-    // successfully remove a company
+    // successfully remove a company - future capability 
     public function destroy($id)
     {
         company::destroy($id);

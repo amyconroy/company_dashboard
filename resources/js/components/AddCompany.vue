@@ -49,7 +49,8 @@
       addPost(){
             this.errors = {};
             this.axios.post(('/api/company/create'), this.post).then((response) => {
-                this.$router.push({name: 'companies'});
+                this.$router.push({name: 'companies'}); // direct to list of companies after upload
+                // catch any validation (422) errors here
             }).catch(error => {
                 if (error.response.status === 422) {
                     this.errors = error.response.data.errors || {};

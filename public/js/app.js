@@ -1962,7 +1962,9 @@ __webpack_require__.r(__webpack_exports__);
       this.axios.post('/api/company/create', this.post).then(function (response) {
         _this.$router.push({
           name: 'companies'
-        });
+        }); // direct to list of companies after upload
+        // catch any validation (422) errors here
+
       })["catch"](function (error) {
         if (error.response.status === 422) {
           _this.errors = error.response.data.errors || {};
@@ -2045,11 +2047,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       files: [],
-      file: []
+      file: [],
+      errors: {}
     };
   },
   methods: {
@@ -2060,12 +2064,19 @@ __webpack_require__.r(__webpack_exports__);
     submitFiles: function submitFiles() {
       var _this = this;
 
+      this.errors = {};
       var formData = new FormData();
       formData.append('file', this.file);
       this.axios.post('/api/files/upload', formData).then(function (response) {
         _this.$router.push({
-          name: 'home'
-        });
+          name: 'files'
+        }); // direct to list of files after upload
+
+      })["catch"](function (error) {
+        // catch any validation (422) errors here
+        if (error.response.status === 422) {
+          _this.errors = error.response.data.errors || {};
+        }
       });
     }
   }
@@ -2137,7 +2148,6 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-//
 //
 //
 //
@@ -2924,7 +2934,13 @@ var render = function() {
                 on: { click: _vm.submitFiles }
               },
               [_vm._v("\n                    Upload File\n            ")]
-            )
+            ),
+            _vm._v(" "),
+            _vm.errors && _vm.errors.file
+              ? _c("div", { staticClass: "text-danger" }, [
+                  _vm._v("You must upload a file of .doc or .docx type.")
+                ])
+              : _vm._e()
           ]
         )
       ])
@@ -3017,10 +3033,6 @@ var render = function() {
     _c(
       "p",
       [
-        _c("router-link", { attrs: { to: { name: "home" } } }, [
-          _vm._v("Home")
-        ]),
-        _vm._v(" |\n        "),
         _c("router-link", { attrs: { to: { name: "companies" } } }, [
           _vm._v("View All Companies")
         ]),
