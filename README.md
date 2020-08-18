@@ -15,7 +15,24 @@ $ composer install
 $ npm install
 $ cp .env.example .env
 ```
-
+Now you will need to set up your database. In order to do so ensure that you have installed [postgres](https://www.postgresql.org/download/). You will need to a create a postgres database, this website uses the companydashboardDB name for the database but you can select whatever you would like, see [the postgres documentation](https://www.postgresql.org/docs/9.0/sql-createdatabase.html) if you need assistance. The database information in the .env file is currently: 
+```
+DB_CONNECTION=pgsql
+DB_HOST=127.0.0.1
+DB_PORT=5432
+DB_DATABASE=companydashboardDB
+DB_USERNAME=postgres
+DB_PASSWORD=1234
+```
+You may need to update this depending on your local username and password, and whatever you named the database. Once you have added your credentials, you can create the database tables by:
+```
+$ php artisan migrate
+```
+Now you can start the website by running: 
+```
+$ npm run dev
+```
+If you have a macOS, it is recommended you use [valet](https://laravel.com/docs/7.x/valet) to run, however more information can be found in the laravel [docs](https://laravel.com/docs/4.2/installation#pretty-urls) if you are struggling to deploy the site. 
 
 ## features
 <p align="center"><img src="Documentation/ex1.gif"width=70%>
