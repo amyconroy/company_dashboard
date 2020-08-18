@@ -22,5 +22,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::post('/company/create', 'CompanyController@create');
 Route::get('/companies', 'CompanyController@index');
 Route::post('/files/upload', 'FileController@create');
+Route::get('/pdf', 'FileController@pdf');
 Route::get('/files', 'FileController@index');
-Route::get('/files/pdf/:id', 'FileController@pdf');
+

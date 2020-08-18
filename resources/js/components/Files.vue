@@ -21,7 +21,6 @@
 </template>
 <script>
   export default {
-      props: ['fileId'],
       data() {
         return {
           files: []
@@ -35,9 +34,8 @@
      methods: {
         viewPDF(fileId) {
             alert(fileId);
-            this.axios.get(('/files/pdf/:id'), this.fileId).then(response => {
-                
-                this.files = response.data.data;
+            this.axios.get('/api/pdf').then(response => {
+                this.$router.push({name: 'home'});
             });
         }
     }
