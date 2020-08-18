@@ -1,21 +1,23 @@
 <?php
 
 namespace Tests\Feature;
-
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
-class UploadFilesTest extends TestCase
+class TestUploadFiles extends TestCase
 {
-    /**
-     * A basic test example.
-     *
-     * @return void
-     */
+    /** @test */
     public function HomeBasicTest()
     {
+        // file upload test
+        $response = $this->call('GET', '/files/upload');
+        $this->assertEquals(200, $response->status());
+    }
+     /** @test */
+    public function HomeFailTest()
+    {
         // home page test
-        $response = $this->get('/files/upload');
-        $response->assertStatus(200);
+        $response = $this->call('POST', '/files/upload');
+        $this->assertEquals(405, $response->status());
     }
 }

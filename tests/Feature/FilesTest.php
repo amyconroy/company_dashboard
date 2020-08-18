@@ -5,17 +5,20 @@ namespace Tests\Feature;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
-class FilesTest extends TestCase
+class TestFiles extends TestCase
 {
-    /**
-     * A basic test for files page.
-     *
-     * @return void
-     */
+    /** @test */
     public function HomeBasicTest()
     {
         // home page test
-        $response = $this->get('/files');
-        $response->assertStatus(200);
+        $response = $this->call('GET', '/files');
+        $this->assertEquals(200, $response->status());
+    }
+    /** @test */
+    public function HomeFailTest()
+    {
+        // home page test
+        $response = $this->call('POST', '/files');
+        $this->assertEquals(405, $response->status());
     }
 }
