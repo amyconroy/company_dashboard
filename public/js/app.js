@@ -1947,10 +1947,24 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       post: {},
+      file: [],
+      files: [],
       errors: {}
     };
   },
@@ -1968,6 +1982,27 @@ __webpack_require__.r(__webpack_exports__);
       })["catch"](function (error) {
         if (error.response.status === 422) {
           _this.errors = error.response.data.errors || {};
+        }
+      });
+    },
+    handleFiles: function handleFiles(e) {
+      this.file = e.target.files[0];
+    },
+    uploadCSV: function uploadCSV() {
+      var _this2 = this;
+
+      this.errors = {};
+      var formData = new FormData();
+      formData.append('file', this.file);
+      this.axios.post('/api/company/csv', formData).then(function (response) {
+        _this2.$router.push({
+          name: 'companies'
+        }); // direct to list of files after upload
+
+      })["catch"](function (error) {
+        // catch any validation (422) errors here
+        if (error.response.status === 422) {
+          _this2.errors = error.response.data.errors || {};
         }
       });
     }
@@ -2109,8 +2144,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2123,17 +2156,6 @@ __webpack_require__.r(__webpack_exports__);
     this.axios.get('/api/files').then(function (response) {
       _this.files = response.data.data;
     });
-  },
-  methods: {
-    viewPDF: function viewPDF(fileId) {
-      var _this2 = this;
-
-      this.axios.get('/api/pdf').then(function (response) {
-        _this2.$router.push({
-          name: 'files'
-        });
-      });
-    }
   }
 });
 
@@ -2802,6 +2824,53 @@ var render = function() {
           _vm._m(0)
         ])
       ]
+    ),
+    _vm._v(" "),
+    _c(
+      "div",
+      {
+        staticClass: "container",
+        attrs: { enctype: "multipart/form-data", method: "POST" }
+      },
+      [
+        _c(
+          "div",
+          { staticClass: "row justify-content-center align-items-center" },
+          [
+            _c("input", {
+              attrs: { type: "file", name: "files" },
+              on: {
+                change: function($event) {
+                  return _vm.handleFiles($event)
+                }
+              }
+            })
+          ]
+        ),
+        _vm._v(" "),
+        _c("div", { staticClass: "form-group" }, [
+          _c(
+            "div",
+            { staticClass: "row justify-content-center align-items-center" },
+            [
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-primary",
+                  on: { click: _vm.uploadCSV }
+                },
+                [_vm._v(" Upload CSV File to Import Company ")]
+              ),
+              _vm._v(" "),
+              _vm.errors && _vm.errors.file
+                ? _c("div", { staticClass: "text-danger" }, [
+                    _vm._v("You must upload a file of .csv type.")
+                  ])
+                : _vm._e()
+            ]
+          )
+        ])
+      ]
     )
   ])
 }
@@ -2912,7 +2981,7 @@ var render = function() {
         { staticClass: "row justify-content-center align-items-center" },
         [
           _c("input", {
-            attrs: { type: "file", multiple: "", name: "files" },
+            attrs: { type: "file", name: "files" },
             on: {
               change: function($event) {
                 return _vm.handleFiles($event)
@@ -2977,18 +3046,7 @@ var render = function() {
         "tbody",
         _vm._l(_vm.files, function(file) {
           return _c("tr", { key: file.id }, [
-            _c("td", [_vm._v(_vm._s(file.fileName))]),
-            _vm._v(" "),
-            _c("td", [
-              _c("input", {
-                attrs: { type: "button", value: "View as PDF" },
-                on: {
-                  click: function($event) {
-                    return _vm.viewPDF(file.id)
-                  }
-                }
-              })
-            ])
+            _c("td", [_vm._v(_vm._s(file.fileName))])
           ])
         }),
         0
@@ -3001,9 +3059,7 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("thead", [
-      _c("tr", [_c("th", [_vm._v("File Name")]), _vm._v(" "), _c("th")])
-    ])
+    return _c("thead", [_c("tr", [_c("th", [_vm._v("File Name")])])])
   }
 ]
 render._withStripped = true
