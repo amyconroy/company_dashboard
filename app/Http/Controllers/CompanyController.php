@@ -49,6 +49,34 @@ class CompanyController extends Controller
         return response()->json('Successfully added new company');
     }
 
+    public function csv(Request $request)
+    {
+        $path = $request->file('file')->getRealPath();
+        $data = array_map('str_getcsv', file($path)); // parse a csv to an array 
+        foreach($data as $row){
+            // init the new company 
+            $company = new company([
+                'companyName' => $row[0],
+                'companyDescription' => $row[1], 
+                'userId' => 0
+            ]);
+            $company->save();
+            // guard against no tags
+            // splits the tags based on comma
+            $tagsSplit = array_filter(explode(',', $row[2]));
+            foreach($tagsSplit as $tag){
+                // if there isn't already a tag with that name - make a new one, 
+                // allows for future sorting by tags
+                $newTag = tags::firstOrCreate(['tagName' => $tag]);
+                $newTag->save();
+                $newTagId = $newTag->id; 
+                $company->tags()->attach($newTagId);
+        
+            }
+        }
+        return response()->json('Successfully added new company');
+    }
+
     // successfully remove a company - future capability 
     public function destroy($id)
     {
