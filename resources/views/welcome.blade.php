@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Company Dashboard</title>
+        <title m-b-md navbar-fixed-top>Company Dashboard</title>
         <!-- Styles -->
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
         <link href="{{ asset('css/welcome.css') }}" rel="stylesheet">
@@ -31,10 +31,12 @@
                     Company Management Dashboard
                 </div>
                 <div id="app">
-                    <li><router-link class="items" to="/company/create">Add a New Company</router-link></li>
-                    <li><router-link class="items" to="/files/upload">Upload a File</router-link></li>
-                    <li><router-link class="items" to="/companies">View Companies</router-link></li>
-                    <li><router-link class="items" to="/files">View Files</router-link></li>
+                    <div class = "links">
+                        <router-link to="/company/create">Add a New Company</router-link>
+                        <router-link to="/files/upload">Upload a File</router-link>
+                        <router-link to="/companies">View Companies</router-link>
+                        <router-link to="/files">View Files</router-link>
+                    </div>
                     <router-view></router-view>
                 </div>
             </div>

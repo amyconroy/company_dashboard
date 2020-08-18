@@ -1942,20 +1942,31 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      post: {}
+      post: {},
+      errors: {}
     };
   },
   methods: {
     addPost: function addPost() {
       var _this = this;
 
+      this.errors = {};
       this.axios.post('/api/company/create', this.post).then(function (response) {
         _this.$router.push({
           name: 'companies'
         });
+      })["catch"](function (error) {
+        if (error.response.status === 422) {
+          _this.errors = error.response.data.errors || {};
+        }
       });
     }
   }
@@ -1972,7 +1983,6 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-//
 //
 //
 //
@@ -2021,6 +2031,12 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -2084,9 +2100,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2104,7 +2117,6 @@ __webpack_require__.r(__webpack_exports__);
     viewPDF: function viewPDF(fileId) {
       var _this2 = this;
 
-      alert(fileId);
       this.axios.get('/api/pdf').then(function (response) {
         _this2.$router.push({
           name: 'files'
@@ -2653,98 +2665,132 @@ var render = function() {
         }
       },
       [
-        _c("div", { staticClass: "row" }, [
-          _c("div", { staticClass: "col-md-6" }, [
-            _c("div", { staticClass: "form-group" }, [
-              _c("label", [_vm._v("Company Name:")]),
-              _vm._v(" "),
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.post.title,
-                    expression: "post.title"
-                  }
-                ],
-                staticClass: "form-control",
-                attrs: { type: "text" },
-                domProps: { value: _vm.post.title },
-                on: {
-                  input: function($event) {
-                    if ($event.target.composing) {
-                      return
+        _c("div", { staticClass: "container" }, [
+          _c(
+            "div",
+            { staticClass: "row justify-content-center align-items-center" },
+            [
+              _c("div", { staticClass: "col-md-6" }, [
+                _c("div", { staticClass: "form-group" }, [
+                  _c("label", [_vm._v("Company Name:")]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.post.title,
+                        expression: "post.title"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: { type: "text" },
+                    domProps: { value: _vm.post.title },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.post, "title", $event.target.value)
+                      }
                     }
-                    _vm.$set(_vm.post, "title", $event.target.value)
-                  }
-                }
-              })
-            ])
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "row" }, [
-          _c("div", { staticClass: "col-md-6" }, [
-            _c("div", { staticClass: "form-group" }, [
-              _c("label", [_vm._v("Company Description:")]),
-              _vm._v(" "),
-              _c("textarea", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.post.body,
-                    expression: "post.body"
-                  }
-                ],
-                staticClass: "form-control",
-                attrs: { rows: "5" },
-                domProps: { value: _vm.post.body },
-                on: {
-                  input: function($event) {
-                    if ($event.target.composing) {
-                      return
+                  }),
+                  _vm._v(" "),
+                  _vm.errors && _vm.errors.title
+                    ? _c("div", { staticClass: "text-danger" }, [
+                        _vm._v("Your must enter a company name.")
+                      ])
+                    : _vm._e()
+                ])
+              ])
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "row justify-content-center align-items-center" },
+            [
+              _c("div", { staticClass: "col-md-6" }, [
+                _c("div", { staticClass: "form-group" }, [
+                  _c("label", [_vm._v("Company Description:")]),
+                  _vm._v(" "),
+                  _c("textarea", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.post.body,
+                        expression: "post.body"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: { rows: "5" },
+                    domProps: { value: _vm.post.body },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.post, "body", $event.target.value)
+                      }
                     }
-                    _vm.$set(_vm.post, "body", $event.target.value)
-                  }
-                }
-              })
-            ])
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "row" }, [
-          _c("div", { staticClass: "col-md-6" }, [
-            _c("div", { staticClass: "form-group" }, [
-              _c("label", [_vm._v("Company Tags:")]),
-              _vm._v(" "),
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.post.tags,
-                    expression: "post.tags"
-                  }
-                ],
-                staticClass: "form-control",
-                attrs: { type: "text" },
-                domProps: { value: _vm.post.tags },
-                on: {
-                  input: function($event) {
-                    if ($event.target.composing) {
-                      return
+                  }),
+                  _vm._v(" "),
+                  _vm.errors && _vm.errors.body
+                    ? _c("div", { staticClass: "text-danger" }, [
+                        _vm._v("You must enter a company description.")
+                      ])
+                    : _vm._e()
+                ])
+              ])
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "row justify-content-center align-items-center" },
+            [
+              _c("div", { staticClass: "col-md-6" }, [
+                _c("div", { staticClass: "form-group" }, [
+                  _c("label", [_vm._v("Company Tags:")]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.post.tags,
+                        expression: "post.tags"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: { type: "text" },
+                    domProps: { value: _vm.post.tags },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.post, "tags", $event.target.value)
+                      }
                     }
-                    _vm.$set(_vm.post, "tags", $event.target.value)
-                  }
-                }
-              })
-            ])
-          ])
-        ]),
-        _c("br"),
-        _vm._v(" "),
-        _vm._m(0)
+                  }),
+                  _vm._v(" "),
+                  _c("div", [_vm._v("Please separate each tag with a comma")]),
+                  _vm._v(" "),
+                  _vm.errors && _vm.errors.tags
+                    ? _c("div", { staticClass: "text-danger" }, [
+                        _vm._v("You must input a tag for your company.")
+                      ])
+                    : _vm._e()
+                ])
+              ])
+            ]
+          ),
+          _c("br"),
+          _vm._v(" "),
+          _vm._m(0)
+        ])
       ]
     )
   ])
@@ -2781,8 +2827,6 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _c("h1", [_vm._v("Companies")]),
-    _vm._v(" "),
     _c("table", { staticClass: "table table-hover" }, [
       _vm._m(0),
       _vm._v(" "),
@@ -2853,17 +2897,36 @@ var render = function() {
       attrs: { enctype: "multipart/form-data", method: "POST" }
     },
     [
-      _c("input", {
-        attrs: { type: "file", name: "files" },
-        on: {
-          change: function($event) {
-            return _vm.handleFiles($event)
-          }
-        }
-      }),
+      _c(
+        "div",
+        { staticClass: "row justify-content-center align-items-center" },
+        [
+          _c("input", {
+            attrs: { type: "file", name: "files" },
+            on: {
+              change: function($event) {
+                return _vm.handleFiles($event)
+              }
+            }
+          })
+        ]
+      ),
       _vm._v(" "),
-      _c("button", { on: { click: _vm.submitFiles } }, [
-        _vm._v("\n                Submit \n        ")
+      _c("div", { staticClass: "form-group" }, [
+        _c(
+          "div",
+          { staticClass: "row justify-content-center align-items-center" },
+          [
+            _c(
+              "button",
+              {
+                staticClass: "btn btn-primary",
+                on: { click: _vm.submitFiles }
+              },
+              [_vm._v("\n                    Upload File\n            ")]
+            )
+          ]
+        )
       ])
     ]
   )
@@ -2891,8 +2954,6 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _c("h1", [_vm._v("Files")]),
-    _vm._v(" "),
     _c("table", { staticClass: "table table-hover" }, [
       _vm._m(0),
       _vm._v(" "),
@@ -2900,8 +2961,6 @@ var render = function() {
         "tbody",
         _vm._l(_vm.files, function(file) {
           return _c("tr", { key: file.id }, [
-            _c("td", [_vm._v(" " + _vm._s(file.id))]),
-            _vm._v(" "),
             _c("td", [_vm._v(_vm._s(file.fileName))]),
             _vm._v(" "),
             _c("td", [
@@ -2927,13 +2986,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("thead", [
-      _c("tr", [
-        _c("th", [_vm._v("File Number")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("File Name")]),
-        _vm._v(" "),
-        _c("th")
-      ])
+      _c("tr", [_c("th", [_vm._v("File Name")]), _vm._v(" "), _c("th")])
     ])
   }
 ]

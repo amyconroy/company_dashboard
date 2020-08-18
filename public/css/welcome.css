@@ -39,19 +39,21 @@ html, body {
 }
 
 .title {
-
     padding: 0 25px;
     font-size: 60px;
 }
 
 .links > a {
     color: #21b434;
-    padding: 0 25px;
+    margin-bottom: 1000px;
+    padding-left: 25px; 
+    padding-right: 25px; 
     font-size: 17px;
     font-weight: 600;
     letter-spacing: .1rem;
     text-decoration: none;
     text-transform: uppercase;
+
 }
 
 .m-b-md {

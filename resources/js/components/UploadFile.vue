@@ -1,9 +1,15 @@
 <template>
     <div class="container" enctype="multipart/form-data" method="POST">
-          <input type="file" name="files" @change="handleFiles($event)">
-             <button @click="submitFiles">
-                    Submit 
-            </button>
+         <div class="row justify-content-center align-items-center">
+            <input type="file" name="files" @change="handleFiles($event)">
+        </div>
+        <div class="form-group">
+            <div class="row justify-content-center align-items-center">
+                <button @click="submitFiles" class= "btn btn-primary">
+                        Upload File
+                </button>
+            </div>
+        </div>
     </div>
 </template>
 <script>

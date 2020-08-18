@@ -16,6 +16,11 @@ class CompanyController extends Controller
 
     public function create(Request $request)
     {
+        $validateData = $request->validate([
+            'title' => 'required|max:255', 
+            'body' => 'required', 
+            'tags' => 'required'
+        ]);
                // init the new company 
         $company = new company([
             'companyName' => $request->get('title'),
