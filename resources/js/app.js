@@ -11,7 +11,6 @@ import App from "./views/App";
 import Companies from "./components/Companies";
 import AddCompany from "./components/AddCompany";
 import UploadFile from "./components/UploadFile";
-import FilesPdf from "./components/Filespdf";
 import Files from "./components/files";
 
 const router = new VueRouter({
@@ -31,11 +30,6 @@ const router = new VueRouter({
             path: "/files/upload",
             name: "uploadFile",
             component: UploadFile,
-        },
-        {
-            path: "/pdf",
-            name: "filespdf",
-            component: FilesPdf,
         },
         {
             path: "/files",

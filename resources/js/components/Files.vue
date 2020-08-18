@@ -35,7 +35,7 @@
         viewPDF(fileId) {
             alert(fileId);
             this.axios.get('/api/pdf').then(response => {
-                this.$router.push({name: 'home'});
+                this.$router.push({name: 'files'});
             });
         }
     }

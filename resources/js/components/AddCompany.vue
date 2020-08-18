@@ -42,7 +42,7 @@
     methods: {
       addPost(){
             this.axios.post(('/api/company/create'), this.post).then((response) => {
-                this.$router.push({name: 'home'});
+                this.$router.push({name: 'companies'});
             });
         }
     }
