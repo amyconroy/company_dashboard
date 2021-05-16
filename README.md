@@ -1,4 +1,4 @@
-<p align="center"><img src="Documentation/home.png"width=85%>
+<p align="center"><img src="Documentation/ex1.gif"width=70%>
 </p>
 
 Company management dashboard built with PHP, Vue.js and Postgres. Capable of creating new companies, listing all companies, uploading files, listing all files, and importing company data from a csv file. 
